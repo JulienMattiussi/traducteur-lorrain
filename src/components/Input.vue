@@ -4,6 +4,7 @@
       v-model="message"
       placeholder="Ecrit le texte à traduire ici"
       rows="4"
+      autofocus
     ></textarea>
   </div>
 </template>
@@ -41,5 +42,16 @@ textarea {
   background: rgba(255, 255, 255, 0.4);
   padding: 10px;
   resize: none;
+  font-size: large;
+}
+
+textarea:focus {
+  outline-offset: unset !important;
+  outline: unset !important;
+}
+
+textarea:focus-visible {
+  outline-offset: unset !important;
+  outline: unset !important;
 }
 </style>
