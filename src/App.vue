@@ -4,7 +4,7 @@
     class="logo"
     src="./assets/Blason_Lorraine.svg.png"
   />
-  <TranslatePanel msg="Welcome to Your Vue.js App" />
+  <TranslatePanel />
 </template>
 
 <script>

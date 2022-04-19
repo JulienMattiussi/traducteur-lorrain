@@ -1,15 +1,13 @@
 <template>
-  <div class="hello">
+  <div class="page">
     <TranslateInput :text="message" :handleChangeText="handleChangeText" />
+
+    <img
+      alt="Icon pointing result"
+      class="arrow"
+      src="../assets/arrow-down-lorraine.png"
+    />
     <TranslateResult :text="message" />
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
   </div>
 </template>
 
@@ -36,20 +34,18 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  max-width: 700px;
+  margin: auto;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+
+.arrow {
+  width: 50px;
+  margin: auto;
 }
 </style>

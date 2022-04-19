@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-    <div class="result">
-      <span>{{ translatedText }}</span>
-    </div>
+    <span>{{ translatedText }}</span>
   </div>
 </template>
 
@@ -31,10 +29,16 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 10px;
 }
-.result {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+span {
+  border-radius: 10px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 10px;
+  text-align: left;
+  white-space: pre;
+  color: black;
 }
 </style>

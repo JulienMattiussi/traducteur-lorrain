@@ -1,12 +1,10 @@
 <template>
   <div class="container">
-    <div class="input">
-      <textarea
-        v-model="message"
-        placeholder="Ecrit le texte à traduire ici"
-        rows="4"
-      ></textarea>
-    </div>
+    <textarea
+      v-model="message"
+      placeholder="Ecrit le texte à traduire ici"
+      rows="4"
+    ></textarea>
   </div>
 </template>
 
@@ -34,10 +32,14 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 10px;
 }
-.input {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+textarea {
+  border-radius: 10px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 10px;
+  resize: none;
 }
 </style>
