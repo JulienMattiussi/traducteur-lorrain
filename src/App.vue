@@ -1,4 +1,13 @@
 <template>
+  <h1 class="title">
+    Le Traducteur Lorrain
+    <i
+      >(using
+      <a href="https://www.npmjs.com/package/lorrainjs" target="lorrainjs"
+        >lorrainjs</a
+      >)</i
+    >
+  </h1>
   <img
     alt="Lorraine logo"
     class="logo"
@@ -31,5 +40,17 @@ export default {
 
 .logo {
   width: 50px;
+}
+.title {
+  color: red;
+}
+
+i {
+  font-size: small;
+  color: black;
+}
+
+a:visited {
+  color: inherit;
 }
 </style>
