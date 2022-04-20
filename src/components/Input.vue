@@ -43,6 +43,7 @@ textarea {
   padding: 10px;
   resize: none;
   font-size: large;
+  box-shadow: 5px 5px 5px grey;
 }
 
 textarea:focus {

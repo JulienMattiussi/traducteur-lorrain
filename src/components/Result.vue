@@ -40,5 +40,7 @@ span {
   text-align: left;
   white-space: pre;
   color: black;
+  min-height: 80px;
+  box-shadow: 5px 5px 5px grey;
 }
 </style>
