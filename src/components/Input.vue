@@ -33,10 +33,12 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   padding: 10px;
 }
 textarea {
+  display: flex;
   border-radius: 10px;
   width: 100%;
   background: rgba(255, 255, 255, 0.4);
