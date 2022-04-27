@@ -3954,10 +3954,10 @@ log-update@^2.3.0:
     cli-cursor "^2.0.0"
     wrap-ansi "^3.0.1"
 
-lorrainjs@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/lorrainjs/-/lorrainjs-0.2.0.tgz#6a6b2480d5295ed281c39b0b8d88897f0169057a"
-  integrity sha512-9IceFNrKZ7oQdrtnPsaV4YnyAzy1GKRm98/LpbVmffqIAKkEwvK4JIMWEX9yGhnoae0+WB9ono+ByAZd+ZnzJg==
+lorrainjs@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/lorrainjs/-/lorrainjs-0.3.1.tgz#9a4ed847d3b2d4005dcd3684f7a2e14169cb1307"
+  integrity sha512-SvWj3Dlsn6l9hTD5llb8jSt2U0uVWeXw/LVOA82ma8dnS/tY6ch4aqpQd2+FuVFp9bpok9pwSQH/83bb9JzrFQ==
 
 lower-case@^2.0.2:
   version "2.0.2"
