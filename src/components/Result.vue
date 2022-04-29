@@ -15,15 +15,30 @@ const scrollToBottom = (node) => {
 };
 
 function debouncer(fn, delay) {
-  var timeoutID = null;
+  let timeoutID = null;
+  let argsRef = "";
   return function () {
-    clearTimeout(timeoutID);
-    var args = arguments;
-    var that = this;
+    const args = arguments;
+    const currentArgs = Array.from(args).reduce(
+      (arg, fullString) => `${fullString}+${arg.toString()}`,
+      ""
+    );
+    if (argsRef === currentArgs) {
+      clearTimeout(timeoutID);
+    } else {
+      argsRef = `${currentArgs}`;
+    }
+    const that = this;
     timeoutID = setTimeout(function () {
       fn.apply(that, args);
     }, delay);
   };
+}
+
+function convertStringToJSON(source) {
+  return source.replace(/(\w+:)|(\w+ :)/g, function (matchedStr) {
+    return '"' + matchedStr.substring(0, matchedStr.length - 1) + '":';
+  });
 }
 
 export default {
@@ -80,21 +95,44 @@ export default {
   },
   watch: {
     text: function (val) {
+      if (!val) {
+        console.warn("Le texte à été effacé.");
+        return;
+      }
       if (val.length > limit) {
         console.error(new Error(`Limite de ${limit} caractères atteinte.`));
         return;
       }
-      this.translatedText = translate(val);
-      if (!val) {
-        console.warn("Le texte à été effacé.");
-      } else {
-        console.log("Le texte à été modifié.");
+      try {
+        const jsonString = convertStringToJSON(val);
+        const jsonObject = JSON.parse(jsonString);
+        if (this.sourceType !== "object") {
+          console.log("La source est un objet valide.");
+        }
+
+        const newTranslation = translate(jsonObject);
+        if (this.translatedText !== newTranslation) {
+          console.log("L'objet à été modifié.");
+          this.translatedText = newTranslation;
+        }
+        this.sourceType = "object";
+      } catch (error) {
+        if (this.sourceType !== "text") {
+          console.log("La source est un texte.");
+        }
+        const newTranslation = translate(val);
+        if (this.translatedText !== newTranslation) {
+          this.translatedText = translate(val);
+          console.log("Le texte à été modifié.");
+        }
+        this.sourceType = "text";
       }
     },
   },
   data: function () {
     return {
       translatedText: translate(this.text),
+      sourceType: "text",
     };
   },
 };
