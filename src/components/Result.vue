@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import { translate, initAll } from "lorrainjs";
+import { parseTranslate, initAll } from "lorrainjs";
 
-const limit = 300;
+const limit = 500;
 
 const scrollToBottom = (node) => {
   node.scrollTop = node.scrollHeight;
@@ -33,12 +33,6 @@ function debouncer(fn, delay) {
       fn.apply(that, args);
     }, delay);
   };
-}
-
-function convertStringToJSON(source) {
-  return source.replace(/(\w+:)|(\w+ :)/g, function (matchedStr) {
-    return '"' + matchedStr.substring(0, matchedStr.length - 1) + '":';
-  });
 }
 
 export default {
@@ -71,7 +65,7 @@ export default {
         }
         logger.innerHTML = `${
           logger.innerHTML
-        }<p style="margin: 0;color:${color};display:flex;"><span style="width: 25px;font-size: 15px;">${icon}</span> ${translate(
+        }<p style="margin: 0;color:${color};display:flex;"><span style="width: 25px;font-size: 15px;">${icon}</span> ${parseTranslate(
           message
         )}</p>`;
         scrollToBottom(logger);
@@ -103,35 +97,31 @@ export default {
         console.error(new Error(`Limite de ${limit} caractères atteinte.`));
         return;
       }
-      try {
-        const jsonString = convertStringToJSON(val);
-        const jsonObject = JSON.parse(jsonString);
-        if (this.sourceType !== "object") {
-          console.log("La source est un objet valide.");
-        }
+      const newTranslation = parseTranslate(val);
 
-        const newTranslation = translate(jsonObject);
+      if (this.sourceType !== "object" && typeof newTranslation === "object") {
+        console.log("La source est un objet valide.");
+        this.sourceType = "object";
         if (this.translatedText !== newTranslation) {
           console.log("L'objet à été modifié.");
-          this.translatedText = newTranslation;
         }
-        this.sourceType = "object";
-      } catch (error) {
-        if (this.sourceType !== "text") {
-          console.log("La source est un texte.");
-        }
-        const newTranslation = translate(val);
+      }
+      if (this.sourceType !== "text" && newTranslation === "string") {
+        console.log("La source est un texte.");
+        this.sourceType = "text";
         if (this.translatedText !== newTranslation) {
-          this.translatedText = translate(val);
           console.log("Le texte à été modifié.");
         }
-        this.sourceType = "text";
+      }
+
+      if (this.translatedText !== newTranslation) {
+        this.translatedText = newTranslation;
       }
     },
   },
   data: function () {
     return {
-      translatedText: translate(this.text),
+      translatedText: parseTranslate(this.text),
       sourceType: "text",
     };
   },
