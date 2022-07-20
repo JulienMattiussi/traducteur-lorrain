@@ -1,6 +1,6 @@
 {
   "name": "traducteur-lorrain",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,7 +10,7 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
-    "lorrainjs": "^1.1.1"
+    "lorrainjs": "^1.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
